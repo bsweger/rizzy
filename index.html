@@ -36,7 +36,7 @@
           <div id="result" class="margin-top-4" style="display: none;">
             <div id="alertBox" class="usa-alert usa-alert--success">
               <div class="usa-alert__body">
-                <h3 class="usa-alert__heading">Your Rizz Score</h3>
+                <h3 id="alertHeading" class="usa-alert__heading">Your Rizz Score</h3>
                 <p class="usa-alert__text">
                   <strong id="userName"></strong>, your rizz score is:
                   <span class="text-bold font-sans-xl" id="rizzScore"></span>
@@ -75,13 +75,20 @@
       document.getElementById('userName').textContent = name;
       document.getElementById('rizzScore').textContent = rizzScore.toLocaleString();
 
-      // Change alert color based on score
+      // Change alert color and heading based on score
       const alertBox = document.getElementById('alertBox');
-      alertBox.classList.remove('usa-alert--success', 'usa-alert--error');
+      const alertHeading = document.getElementById('alertHeading');
+      alertBox.classList.remove('usa-alert--success', 'usa-alert--error', 'usa-alert--info');
+
       if (rizzScore < 0) {
         alertBox.classList.add('usa-alert--error');
+        alertHeading.textContent = 'Your Rizz Score';
+      } else if (rizzScore > 7000) {
+        alertBox.classList.add('usa-alert--success');
+        alertHeading.textContent = "You're a Rizzler!";
       } else {
         alertBox.classList.add('usa-alert--success');
+        alertHeading.textContent = 'Your Rizz Score';
       }
 
       document.getElementById('result').style.display = 'block';
