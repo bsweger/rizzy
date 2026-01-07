@@ -34,7 +34,7 @@
 
           <!-- Result Display -->
           <div id="result" class="margin-top-4" style="display: none;">
-            <div class="usa-alert usa-alert--success">
+            <div id="alertBox" class="usa-alert usa-alert--success">
               <div class="usa-alert__body">
                 <h3 class="usa-alert__heading">Your Rizz Score</h3>
                 <p class="usa-alert__text">
@@ -61,12 +61,29 @@
       // Get the name input value
       const name = document.getElementById('name').value.trim();
 
-      // Generate a random rizz score between 0 and 8000
-      const rizzScore = Math.floor(Math.random() * 8001);
+      // Generate a random rizz score
+      let rizzScore;
+      if (name.toLowerCase() === 'ryan') {
+        // For Ryan, generate a score between -8000 and -1
+        rizzScore = -Math.floor(Math.random() * 8000) - 1;
+      } else {
+        // For everyone else, generate a score between 0 and 8000
+        rizzScore = Math.floor(Math.random() * 8001);
+      }
 
       // Display the result
       document.getElementById('userName').textContent = name;
       document.getElementById('rizzScore').textContent = rizzScore.toLocaleString();
+
+      // Change alert color based on score
+      const alertBox = document.getElementById('alertBox');
+      alertBox.classList.remove('usa-alert--success', 'usa-alert--error');
+      if (rizzScore < 0) {
+        alertBox.classList.add('usa-alert--error');
+      } else {
+        alertBox.classList.add('usa-alert--success');
+      }
+
       document.getElementById('result').style.display = 'block';
 
       // Scroll to result
