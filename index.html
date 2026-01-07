@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rizz Score Calculator</title>
+
+  <!-- USWDS CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@uswds/uswds@3.7.1/dist/css/uswds.min.css">
+</head>
+<body>
+  <div class="usa-section">
+    <div class="grid-container">
+      <div class="grid-row grid-gap">
+        <div class="tablet:grid-col-8 tablet:grid-offset-2">
+
+          <!-- Header -->
+          <h1 class="margin-top-0">Rizz Score Calculator</h1>
+          <p class="usa-intro">Enter your name to discover your rizz score!</p>
+
+          <!-- Form -->
+          <form id="rizzForm" class="usa-form usa-form--large">
+            <label class="usa-label" for="name">Name</label>
+            <input
+              class="usa-input"
+              id="name"
+              name="name"
+              type="text"
+              required
+              placeholder="Enter your name"
+            >
+            <button type="submit" class="usa-button margin-top-2">Calculate Rizz Score</button>
+          </form>
+
+          <!-- Result Display -->
+          <div id="result" class="margin-top-4" style="display: none;">
+            <div class="usa-alert usa-alert--success">
+              <div class="usa-alert__body">
+                <h3 class="usa-alert__heading">Your Rizz Score</h3>
+                <p class="usa-alert__text">
+                  <strong id="userName"></strong>, your rizz score is:
+                  <span class="text-bold font-sans-xl" id="rizzScore"></span>/100
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- USWDS JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/@uswds/uswds@3.7.1/dist/js/uswds.min.js"></script>
+
+  <!-- Application JavaScript -->
+  <script>
+    document.getElementById('rizzForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      // Get the name input value
+      const name = document.getElementById('name').value.trim();
+
+      // Generate a random rizz score between 1 and 100
+      const rizzScore = Math.floor(Math.random() * 100) + 1;
+
+      // Display the result
+      document.getElementById('userName').textContent = name;
+      document.getElementById('rizzScore').textContent = rizzScore;
+      document.getElementById('result').style.display = 'block';
+
+      // Scroll to result
+      document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>
